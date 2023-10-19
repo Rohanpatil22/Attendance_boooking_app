@@ -29,7 +29,7 @@ export const markAttendance=async(req,res)=>{
     }
     else{
 
-        const updatedData=await Attendances.findByIdAndUpdate({date:bookingDate},{status:bookingStatus});
+        const updatedData=await Attendances.findOneAndUpdate({date:bookingDate},{status:bookingStatus});
         res.status(200).json({
             msg:"Data updated successfully",
             updatedData
