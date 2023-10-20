@@ -1,6 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
+
 
 function Card(props) {
 
@@ -22,6 +26,14 @@ function Card(props) {
         await axios.post("http://localhost:5000/api/v1/addata",info)
         .then((res)=>{
           console.log(res);
+
+          
+          if(res.data.msg==="new data added" || res.data.msg==="Data updated successfully")
+          {
+            console.log("Ok");
+           
+            toast.success(res.data.msg);
+          }
         });
 
         props.checkupdate();
@@ -42,8 +54,12 @@ function Card(props) {
         </div>
         <div className='text-center mt-10'>
             <button className='w-28 bg-teal-800 p-2 text-white text-lg font-bold rounded-xl' onClick={markData}  >Submit</button>
+           
         </div>
+        
     </div>
+    
+  
     </>
   )
 }

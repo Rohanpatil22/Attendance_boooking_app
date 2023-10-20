@@ -4,6 +4,8 @@ import  './App.css';
 import Card from './Card'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import AttendanceTable from './AttendanceTable';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
@@ -13,6 +15,7 @@ function App() {
   const [check,setcheck]=useState(false);
   const [presetarr,setpresentarr]=useState([]);
   const[absentarr,setabsentarr]=useState([]);
+  const[tableData,settableData]=useState();
   const date=new Date();
 
  
@@ -26,6 +29,7 @@ async function fetchdata()
   .then((res)=>{
     
      const resData= res.data.allData;
+     settableData(resData);
     console.log(resData);
 
     resData.map((item)=>{
@@ -80,7 +84,7 @@ function changeCheck()
   return (
    <>
    { load &&
-   <div className='m-10 w-11/10'>
+   <div className=' w-11/10 mt-20'>
        
       {/* <Calendar className="h-11/10" value={date} onChange={getDate} tileClassName={(date)=>{let temp=date.date.getFullYear()+"-"+(date.date.getMonth()+1)+"-"+date.date.getDate() ;if(presetarr.includes(temp)){return 'highlight_1'} else if(absentarr.includes(temp)){return 'highlight_2'} else{return 'highlight_3'}}}/> */}
 
@@ -91,8 +95,13 @@ function changeCheck()
    <div style={{position:"absolute",top:"10%",left:"40%"}}>
     {check && <Card  selDate={checkdate} checkupdate={changeCheck}/>}
    </div>
+
+   <div>
+    { <AttendanceTable Info={tableData}/>}
+   </div>
    
    
+   <ToastContainer/>
    
    </>
   );
