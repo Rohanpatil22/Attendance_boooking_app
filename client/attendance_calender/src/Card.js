@@ -6,7 +6,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 
+
 function Card(props) {
+
 
   const[info,setInfo]=useState({bookingDate:props.selDate,bookingStatus:""})
  
@@ -23,7 +25,8 @@ function Card(props) {
 
       if(info.bookingStatus!="")
       {
-        await axios.post("http://localhost:5000/api/v1/addata",info)
+        // await axios.post("http://localhost:5000/api/v1/addata",info)
+         await axios.post(`${props.baseUrl}/api/v1/addata`,info)
         .then((res)=>{
           console.log(res);
 

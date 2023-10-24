@@ -8,6 +8,7 @@ import AttendanceTable from './AttendanceTable';
 import { ToastContainer } from 'react-toastify';
 
 
+
 function App() {
 
   const [checkdate,setCheckdate]=useState();
@@ -18,14 +19,18 @@ function App() {
   const[tableData,settableData]=useState();
   const date=new Date();
 
- 
+   const BASE_URL="http://localhost:5000"; 
+  // const BASE_URL="https://attendance-booking-backend.onrender.com"; 
 async function fetchdata()
 {
   setpresentarr([]);
   setabsentarr([]);
 
+  
 
-  await axios.get("http://localhost:5000/api/v1/getData")
+  // await axios.get("http://localhost:5000/api/v1/getData")
+ 
+   await axios.get(`${BASE_URL}/api/v1/getData`)
   .then((res)=>{
     
      const resData= res.data.allData;
@@ -93,7 +98,7 @@ function changeCheck()
    </div>
 }
    <div style={{position:"absolute",top:"10%",left:"40%"}}>
-    {check && <Card  selDate={checkdate} checkupdate={changeCheck}/>}
+    {check && <Card  selDate={checkdate} checkupdate={changeCheck} baseUrl={BASE_URL}/>}
    </div>
 
    <div>
