@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import app from "./app.js";
 
-const Mongo_Url=process.env.Mongo_Url;
+const Mongo_Url=process.env.MONGO_URL;
 
 (async()=>{
     try{
