@@ -19,8 +19,8 @@ function App() {
   const[tableData,settableData]=useState();
   const date=new Date();
 
-   const BASE_URL="http://localhost:5000"; 
-  // const BASE_URL="https://attendance-booking-backend.onrender.com"; 
+   //const BASE_URL="http://localhost:5000"; 
+   const BASE_URL="https://attendance-booking-backend.onrender.com"; 
 async function fetchdata()
 {
   setpresentarr([]);
